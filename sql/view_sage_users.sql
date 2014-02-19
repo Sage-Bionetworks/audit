@@ -10,10 +10,10 @@ FROM
     -- Some users, like 'anonymous@sageabase.org', are not associated with any group thus the left outer join
     LEFT JOIN GROUP_MEMBERS GM ON UG.ID = GM.MEMBER_ID 
 WHERE
-    UG.ISINDIVIDUAL = true AND
-    PA.TYPE = 'USER_EMAIL' AND (
+    UG.ISINDIVIDUAL = true AND (
         GM.GROUP_ID = 273957 OR -- The Sage Employee Team
-        GM.GROUP_ID = 2 OR      -- The Administrators Team
+        GM.GROUP_ID = 2) AND    -- The Administrators Team
+    PA.TYPE = 'USER_EMAIL' AND (
         PA.ALIAS_DISPLAY IN (
            'some.guy@gmail.com') OR -- Ask for the list
         PA.ALIAS_DISPLAY LIKE '%@sagebase.org' OR
