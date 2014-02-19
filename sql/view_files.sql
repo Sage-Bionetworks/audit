@@ -5,11 +5,15 @@ SELECT
     NODE.NAME AS NAME,
     NODE.CREATED_ON AS CREATED_ON,
     NODE.CREATED_BY AS CREATED_BY,
+    -- Back track at most 11 levels to find the containing project
     -- The first non-null parent is the containing project
     -- Or there can be a special case where the file has no containing project (24 such files) and
-    -- the parent project will back track all the way to the root
-    IFNULL(P12.ID, IFNULL(P11.ID, IFNULL(P10.ID, IFNULL(P9.ID, IFNULL(P8.ID, IFNULL(P7.ID, IFNULL(
-        P6.ID, IFNULL(P5.ID, IFNULL(P4.ID, IFNULL(P3.ID, IFNULL(P2.ID, P1.ID))))))))))) AS PROJECT_ID
+    -- the parent project will back track all the way to the root (ID 4489)
+    CASE WHEN P12.ID IS NOT NULL
+        THEN -1
+        ELSE NULLIF(COALESCE(P11.ID, P10.ID, P9.ID, P8.ID, P7.ID,
+            P6.ID, P5.ID, P4.ID, P3.ID, P2.ID, P1.ID), 4489)
+    END AS PROJECT_ID
 FROM
     JDONODE NODE
     LEFT JOIN JDONODE P1 ON NODE.PARENT_ID = P1.ID
@@ -31,9 +35,14 @@ WHERE
 
 -- Unit tests
 SELECT CONCAT(CASE WHEN
-    (SELECT COUNT(ID) FROM VIEW_FILES WHERE PROJECT_ID <> 4489) > 50000
+    (SELECT COUNT(ID) FROM VIEW_FILES) > 50000
     THEN 'PASSED' ELSE 'FAILED' END,
     ' -- At least 50,000 files.');
+
+SELECT CONCAT(CASE WHEN
+    (SELECT COUNT(ID) FROM VIEW_FILES WHERE PROJECT_ID = 4489) = 0
+    THEN 'PASSED' ELSE 'FAILED' END,
+    ' -- No file should have the root as the project.');
 
 SELECT CONCAT(CASE WHEN
     (SELECT COUNT(ID) FROM VIEW_FILES WHERE PROJECT_ID = 1834618) = 0
