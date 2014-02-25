@@ -35,6 +35,11 @@ WHERE
 
 -- Unit tests
 SELECT CONCAT(CASE WHEN
+    (SELECT COUNT(ID) FROM VIEW_FILES WHERE PROJECT_ID < 0) = 0
+    THEN 'PASSED' ELSE 'FAILED' END,
+    ' -- The recursion on parent-id is deep enough.');
+
+SELECT CONCAT(CASE WHEN
     (SELECT COUNT(ID) FROM VIEW_FILES) > 50000
     THEN 'PASSED' ELSE 'FAILED' END,
     ' -- At least 50,000 files.');

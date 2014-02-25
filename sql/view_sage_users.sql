@@ -45,6 +45,11 @@ GROUP BY
 
 
 -- Unit tests
+SELECT CONCAT(CASE WHEN
+    (SELECT COUNT(DISTINCT PRINCIPAL_ID) FROM VIEW_SAGE_USERS WHERE EMAIL NOT LIKE '%@sagebase.org') > 20
+    THEN 'PASSED' ELSE 'FAILED' END,
+    ' -- Should include non-sagebase emails. Do not forget to include the list.');
+
 SELECT * FROM VIEW_SAGE_USERS;
 
 SELECT * FROM VIEW_NON_SAGE_USERS;
