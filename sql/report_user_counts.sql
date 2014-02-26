@@ -28,10 +28,3 @@ FROM
 WHERE
     CREATED_ON > '2013-11-01 00:00:00' AND
     CREATED_ON < '2014-02-01 00:00:00';
-
-
--- Count of active non-Sage users during this audit quarter
-
-
--- Count of active users during this audit quarter
-
