@@ -17,7 +17,8 @@ WHERE
         PA.ALIAS_DISPLAY IN (
             'some.guy@gmail.com') OR -- Ask for the list
         PA.ALIAS_DISPLAY LIKE '%@sagebase.org' OR
-        PA.ALIAS_DISPLAY LIKE '%@jayhodgson.com')
+        PA.ALIAS_DISPLAY LIKE '%@jayhodgson.com' OR
+        PA.ALIAS_DISPLAY LIKE '%@sharklasers.com')
 GROUP BY
     UG.ID,
     UG.CREATION_DATE;
