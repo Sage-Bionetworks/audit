@@ -17,7 +17,7 @@ ORDER BY
     COUNT(DISTINCT AR.SESSION) DESC;
 
 -- Top public projects accessed by non-Sage users
--- 115 minutes
+-- 9 minutes
 SELECT
     PN.ID,
     PN.NAME,
@@ -64,6 +64,7 @@ ORDER BY
     SESSION_COUNT DESC;
 
 -- Top public file downloads by non-Sage users
+-- 12 minutes
 SELECT
     PN.ID,
     PN.NAME,
