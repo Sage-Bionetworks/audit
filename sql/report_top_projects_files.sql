@@ -56,7 +56,7 @@ WHERE
     -- File download
     -- /repo/v1/entity/{id}/file
     -- /repo/v1/entity/{id}/version/{ver}/file
-    AR.URI REGEXP '^/repo/v1/entity/syn[0-9]+/.*/file$'
+    AR.URI REGEXP '^/repo/v1/entity/syn[0-9]+(/version/[0-9]+)?/file$'
 GROUP BY
     PN.ID,
     PN.NAME
@@ -84,7 +84,7 @@ WHERE
     -- File download
     -- /repo/v1/entity/{id}/file
     -- /repo/v1/entity/{id}/version/{ver}/file
-    AR.URI REGEXP '^/repo/v1/entity/syn[0-9]+/.*/file$'
+    AR.URI REGEXP '^/repo/v1/entity/syn[0-9]+(/version/[0-9]+)?/file$'
 GROUP BY
     PN.ID,
     PN.NAME
