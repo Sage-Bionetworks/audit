@@ -1,0 +1,60 @@
+
+SELECT
+    COUNT(DISTINCT SESSION)
+FROM
+    AUDIT_ACCESS_RECORDS_TCGA AR,
+    AUDIT_NON_SAGE_USERS NSU
+WHERE
+    AR.USER_ID = NSU.ID AND
+    METHOD = 'GET' AND
+    (URI = '/repo/v1/entity/syn300013/wiki2' OR
+    URI = '/repo/v1/entity/syn300013/wiki/27406');
+
+
+SELECT
+    NSU.ID AS USER_ID,
+	NSU.EMAIL AS USER_EMAIL,
+    COUNT(DISTINCT SESSION) AS SESSION_COUNT
+FROM
+    AUDIT_ACCESS_RECORDS_TCGA AR USE INDEX (USER_ID),
+    AUDIT_NON_SAGE_USERS NSU
+WHERE
+    AR.USER_ID = NSU.ID AND
+    METHOD = 'GET' AND
+    (URI = '/repo/v1/entity/syn300013/wiki2' OR
+    URI = '/repo/v1/entity/syn300013/wiki/27406')
+GROUP BY
+    USER_ID,
+    USER_EMAIL
+ORDER BY
+    SESSION_COUNT DESC;
+
+
+SELECT
+    IFNULL(USER_ID, 'NULL') AS USER_ID,
+    COUNT(DISTINCT SESSION)
+FROM
+    AUDIT_ACCESS_RECORDS_TCGA
+WHERE
+    (USER_ID IS NULL OR USER_ID = 273950) AND -- Anonymous
+    METHOD = 'GET' AND
+    (URI = '/repo/v1/entity/syn300013/wiki2' OR
+    URI = '/repo/v1/entity/syn300013/wiki/27406')
+GROUP BY
+    IFNULL(USER_ID, 'NULL');
+
+
+-- This gets back empty results
+SELECT
+    *
+FROM
+    AUDIT_ACCESS_RECORDS_TCGA
+WHERE
+    USER_ID IS NULL AND
+    METHOD = 'GET' AND
+    (URI = '/repo/v1/entity/syn300013/wiki2' OR
+    URI = '/repo/v1/entity/syn300013/wiki/27406');
+
+
+SELECT * FROM V2_WIKI_OWNERS WHERE OWNER_ID = 300013;
+
