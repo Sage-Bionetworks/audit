@@ -15,6 +15,7 @@ WHERE
     AR.USER_ID = NSU.ID AND
     AR.ENTITY_ID = FILES.ID AND
     AR.USER_ID IN (297328, 1528703, 363879, 1867663, 375805) AND
+    AR.METHOD = 'GET' AND
     AR.URI REGEXP '^/repo/v1/entity/syn[0-9]+(/version/[0-9]+)?/file$'
 GROUP BY
     USER_ID,
