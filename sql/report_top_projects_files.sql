@@ -44,7 +44,9 @@ ORDER BY
 SELECT
     PN.ID,
     PN.NAME,
-    COUNT(DISTINCT AR.SESSION) AS SESSION_COUNT
+    COUNT(DISTINCT AR.SESSION) AS SESSION_COUNT,
+    PN.ID IN (SELECT ID FROM AUDIT_CONTROLLED) AS CONTROLLED,
+    PN.ID IN (SELECT ID FROM AUDIT_RESTRICTED) AS RESTRICTED
 FROM
     AUDIT_PUBLIC_NODES PN
 INNER JOIN
@@ -56,7 +58,7 @@ WHERE
     -- File download
     -- /repo/v1/entity/{id}/file
     -- /repo/v1/entity/{id}/version/{ver}/file
-    AR.URI REGEXP '^/repo/v1/entity/syn[0-9]+/.*/file$'
+    AR.URI REGEXP '^/repo/v1/entity/syn[0-9]+(/version/[0-9]+)?/file$'
 GROUP BY
     PN.ID,
     PN.NAME
@@ -68,7 +70,9 @@ ORDER BY
 SELECT
     PN.ID,
     PN.NAME,
-    COUNT(DISTINCT AR.SESSION) AS SESSION_COUNT
+    COUNT(DISTINCT AR.SESSION) AS SESSION_COUNT,
+    PN.ID IN (SELECT ID FROM AUDIT_CONTROLLED) AS CONTROLLED,
+    PN.ID IN (SELECT ID FROM AUDIT_RESTRICTED) AS RESTRICTED
 FROM
     AUDIT_PUBLIC_NODES PN
 INNER JOIN
@@ -84,7 +88,7 @@ WHERE
     -- File download
     -- /repo/v1/entity/{id}/file
     -- /repo/v1/entity/{id}/version/{ver}/file
-    AR.URI REGEXP '^/repo/v1/entity/syn[0-9]+/.*/file$'
+    AR.URI REGEXP '^/repo/v1/entity/syn[0-9]+(/version/[0-9]+)?/file$'
 GROUP BY
     PN.ID,
     PN.NAME

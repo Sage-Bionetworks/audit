@@ -22,7 +22,7 @@ WHERE
     RA.OWNER_ID = ACL.ID AND
     RAAT.OWNER_ID = ACL.ID AND
     RA.ID = RAAT.ID_OID AND
-    -- If the anonymous user group can read
+    -- If the public user group can read
     UG.ID = 273949 AND
     RAAT.STRING_ELE = 'READ' AND
     NODE.BENEFACTOR_ID <> 1681355; -- Not in trash can
