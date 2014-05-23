@@ -1,4 +1,4 @@
 audit
 =====
 
-Scripts for audit
+ETL scripts for Synapse audit.
