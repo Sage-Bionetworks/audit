@@ -13,8 +13,8 @@ SELECT
 FROM
     AUDIT_SAGE_USERS
 WHERE
-    CREATED_ON > '2013-11-01 00:00:00' AND
-    CREATED_ON < '2014-02-01 00:00:00';
+    CREATED_ON > '2014-02-01 00:00:00' AND
+    CREATED_ON < '2014-05-01 00:00:00';
 
 -- Count of non-Sage users registered during this audit quarter
 SELECT
@@ -22,8 +22,8 @@ SELECT
 FROM
     AUDIT_NON_SAGE_USERS
 WHERE
-    CREATED_ON > '2013-11-01 00:00:00' AND
-    CREATED_ON < '2014-02-01 00:00:00';
+    CREATED_ON > '2014-02-01 00:00:00' AND
+    CREATED_ON < '2014-05-01 00:00:00';
 
 -- Count of non-Sage users by email domain
 SELECT

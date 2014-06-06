@@ -18,6 +18,17 @@ WHERE
     NODES.TYPE = 16;
 
 
+-- Count of public files created by Sage users
+SELECT
+    COUNT(DISTINCT NODES.ID)
+FROM
+    AUDIT_PUBLIC_NODES NODES,
+    AUDIT_SAGE_USERS USERS
+WHERE
+    NODES.CREATED_BY = USERS.ID AND
+    NODES.TYPE = 16;
+
+
 -- Count of non-public files
 SELECT
     COUNT(DISTINCT ID)
@@ -25,6 +36,7 @@ FROM
     AUDIT_NON_PUBLIC_NODES
 WHERE
     TYPE = 16;
+
 
 -- Count of non-public files created by non-sage users
 SELECT
@@ -36,7 +48,19 @@ WHERE
     NODES.CREATED_BY = USERS.ID AND
     NODES.TYPE = 16;
 
--- Since last audit ---
+
+-- Count of non-public files created by sage users
+SELECT
+    COUNT(DISTINCT NODES.ID)
+FROM
+    AUDIT_NON_PUBLIC_NODES NODES,
+    AUDIT_SAGE_USERS USERS
+WHERE
+    NODES.CREATED_BY = USERS.ID AND
+    NODES.TYPE = 16;
+
+
+-- ------ Since last audit ------
 
 -- Count of public files
 SELECT
@@ -45,8 +69,8 @@ FROM
     AUDIT_PUBLIC_NODES
 WHERE
     TYPE = 16 AND
-    CREATED_ON > '2013-11-01 00:00:00' AND
-    CREATED_ON < '2014-02-01 00:00:00';
+    CREATED_ON > '2014-02-01 00:00:00' AND
+    CREATED_ON < '2014-05-01 00:00:00';
 
 
 -- Count of public files created by non-sage users
@@ -58,8 +82,21 @@ FROM
 WHERE
     NODES.CREATED_BY = USERS.ID AND
     NODES.TYPE = 16 AND
-    NODES.CREATED_ON > '2013-11-01 00:00:00' AND
-    NODES.CREATED_ON < '2014-02-01 00:00:00';
+    NODES.CREATED_ON > '2014-02-01 00:00:00' AND
+    NODES.CREATED_ON < '2014-05-01 00:00:00';
+
+
+-- Count of public files created by sage users
+SELECT
+    COUNT(DISTINCT NODES.ID)
+FROM
+    AUDIT_PUBLIC_NODES NODES,
+    AUDIT_SAGE_USERS USERS
+WHERE
+    NODES.CREATED_BY = USERS.ID AND
+    NODES.TYPE = 16 AND
+    NODES.CREATED_ON > '2014-02-01 00:00:00' AND
+    NODES.CREATED_ON < '2014-05-01 00:00:00';
 
 
 -- Count of non-public files
@@ -69,8 +106,8 @@ FROM
     AUDIT_NON_PUBLIC_NODES
 WHERE
     TYPE = 16 AND
-    CREATED_ON > '2013-11-01 00:00:00' AND
-    CREATED_ON < '2014-02-01 00:00:00';
+    CREATED_ON > '2014-02-01 00:00:00' AND
+    CREATED_ON < '2014-05-01 00:00:00';
 
 
 -- Count of non-public files created by non-sage users
@@ -82,5 +119,18 @@ FROM
 WHERE
     NODES.CREATED_BY = USERS.ID AND
     NODES.TYPE = 16 AND
-    NODES.CREATED_ON > '2013-11-01 00:00:00' AND
-    NODES.CREATED_ON < '2014-02-01 00:00:00';
+    NODES.CREATED_ON > '2014-02-01 00:00:00' AND
+    NODES.CREATED_ON < '2014-05-01 00:00:00';
+
+
+-- Count of non-public files created by sage users
+SELECT
+    COUNT(DISTINCT NODES.ID)
+FROM
+    AUDIT_NON_PUBLIC_NODES NODES,
+    AUDIT_SAGE_USERS USERS
+WHERE
+    NODES.CREATED_BY = USERS.ID AND
+    NODES.TYPE = 16 AND
+    NODES.CREATED_ON > '2014-02-01 00:00:00' AND
+    NODES.CREATED_ON < '2014-05-01 00:00:00';
