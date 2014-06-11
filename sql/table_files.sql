@@ -5,7 +5,7 @@ SELECT DISTINCT
     NODE.NAME AS NAME,
     FROM_UNIXTIME(NODE.CREATED_ON / 1000) AS CREATED_ON,
     NODE.CREATED_BY AS CREATED_BY,
-    -- Back track at most 11 levels to find the containing project
+    -- Back track at most 16 levels to find the containing project
     -- The first non-null parent is the containing project
     -- Or there can be a special case where the file has no containing project (24 such files) and
     -- the parent project will back track all the way to the root (ID 4489)
