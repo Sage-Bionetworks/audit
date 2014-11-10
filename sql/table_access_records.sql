@@ -8,7 +8,7 @@ CREATE TABLE AUDIT_SESSION_ENTITY (
 
 -- 3,167,850 rows, 1.5 minutes
 LOAD DATA LOCAL INFILE
-    '/Users/ewu/Documents/logs/audit-2014-02/results/session-synid.csv'
+    '/Users/kimyen/Documents/Sage/audit-2014-11/session-synid.csv'
 INTO TABLE
     AUDIT_SESSION_ENTITY
 FIELDS TERMINATED BY ','
@@ -44,7 +44,7 @@ CREATE TABLE AUDIT_ACCESS_RECORDS (
 -- Imports merged access-record files of selected columns
 -- 21,731,753 rows, 45 minutes on a medium instance
 LOAD DATA LOCAL INFILE
-    '/Users/ewu/Documents/logs/audit-2014-02/results/access-record-lean.csv' 
+    '/Users/kimyen/Documents/Sage/audit-2014-11/access-record-lean.csv' 
 INTO TABLE
     AUDIT_ACCESS_RECORDS
 FIELDS TERMINATED BY ','
@@ -61,6 +61,12 @@ LINES TERMINATED BY '\n' (
     STACK,
     SUCCESS
 );
+
+-- For Error 1175 on update, run the following command
+-- SET SQL_SAFE_UPDATES = 0;
+-- For Error 1205, run the following commands
+-- show variables like 'innodb_lock_wait_timeout';
+-- set innodb_lock_wait_timeout=200;
 
 -- Converts imported columns to proper types and values
 -- 25 minutes
