@@ -1,3 +1,5 @@
+-- Before execute the queries in this table, run the audit-pipeline code to generate CONCRETE_TYPE in ACCESS_REQUIREMENT table
+
 -- Data usage has three tiers:
 -- ============================================================================
 -- 1) Open Use Conditions: Includes data that may be shared
@@ -19,7 +21,7 @@ FROM
 WHERE
     NAR.REQUIREMENT_ID = AR.ID AND
     NAR.SUBJECT_ID = NODE.ID AND
-    AR.ENTITY_TYPE = 'org.sagebionetworks.repo.model.TermsOfUseAccessRequirement' AND
+    AR.CONCRETE_TYPE = 'org.sagebionetworks.repo.model.TermsOfUseAccessRequirement' AND
     NODE.BENEFACTOR_ID <> 1681355; -- Not in trash can
 
 -- Execute me 15 times to walk down the tree to find all the descendents
@@ -51,7 +53,7 @@ FROM
 WHERE
     NAR.REQUIREMENT_ID = AR.ID AND
     NAR.SUBJECT_ID = NODE.ID AND
-    AR.ENTITY_TYPE = 'org.sagebionetworks.repo.model.ACTAccessRequirement' AND 
+    AR.CONCRETE_TYPE = 'org.sagebionetworks.repo.model.ACTAccessRequirement' AND 
     NODE.PARENT_ID <> 1681355; -- Not in trash can
 
 -- Excute me at lest 15 times
