@@ -1,29 +1,29 @@
-# new sage users over time
-
+-- new sage users over time
+-- sage_users_over_time.csv
 SELECT *
 FROM
     AUDIT_SAGE_USERS USERS
 ORDER BY
     CREATED_ON DESC;
 
-# new non sage users over time
-
+-- new non sage users over time
+-- non_sage_users_over_time.csv
 SELECT *
 FROM
     AUDIT_NON_SAGE_USERS USERS
 ORDER BY
     CREATED_ON DESC;
 
-# new projects over time
-
+-- new projects over time
+-- projects_over_time.csv
 SELECT *
 FROM
     AUDIT_PUBLIC_NODES
 WHERE TYPE=2
 GROUP BY ID;
 
-# new public files over time
-
+-- new public files over time
+-- public_files_over_time.csv
 SELECT 
     AF.ID AS ID, 
     AF.NAME AS NAME, 
