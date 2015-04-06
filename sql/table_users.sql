@@ -21,8 +21,6 @@ SELECT CONCAT(CASE WHEN
     THEN 'PASSED' ELSE 'FAILED' END,
     ' -- Should have at least 4000 users.');
 
-
-
 -- Current Sage employees
 CREATE TABLE AUDIT_SAGE_USERS (
     ID BIGINT NOT NULL PRIMARY KEY,
@@ -34,10 +32,11 @@ CREATE TABLE AUDIT_SAGE_USERS (
 );
 
 LOAD DATA LOCAL INFILE
-    '/Users/kimyen/Documents/Sage/audit-2014-11/synapse_users_sage.csv'
+    '/Users/kimyen/Documents/Sage/audit_2015_02/synapse_users_sage.csv'
 INTO TABLE
     AUDIT_SAGE_USERS
 FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 LINES (
     ID,
@@ -74,10 +73,11 @@ CREATE TABLE AUDIT_TEST_USERS (
 );
 
 LOAD DATA LOCAL INFILE
-    '/Users/kimyen/Documents/Sage/audit-2014-11/synapse_users_testing.csv'
+    '/Users/kimyen/Documents/Sage/audit_2015_02/synapse_users_testing.csv'
 INTO TABLE
     AUDIT_TEST_USERS
 FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 LINES (
     ID,
@@ -123,10 +123,11 @@ CREATE TABLE AUDIT_DAEMON_USERS (
 );
 
 LOAD DATA LOCAL INFILE
-    '/Users/kimyen/Documents/Sage/audit-2014-11/synapse_users_daemon.csv' 
+    '/Users/kimyen/Documents/Sage/audit_2015_02/synapse_users_daemon.csv' 
 INTO TABLE
     AUDIT_DAEMON_USERS
 FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 LINES (
     ID,

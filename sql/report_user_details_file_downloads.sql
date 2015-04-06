@@ -1,4 +1,5 @@
 -- File downloads of selected users
+-- user_details_file_downloads.csv
 SELECT
     NSU.ID AS USER_ID,
     NSU.EMAIL AS USER_EMAIL,
@@ -14,7 +15,7 @@ FROM
 WHERE
     AR.USER_ID = NSU.ID AND
     AR.ENTITY_ID = FILES.ID AND
-    AR.USER_ID IN (2224165, 273956, 1961122, 3319762, 273967) AND
+    AR.USER_ID IN (1586613, 3319668, 3321844, 3319406, 3321882, 3323064, 3320967, 3322446) AND
     AR.METHOD = 'GET' AND
     AR.URI REGEXP '^/repo/v1/entity/syn[0-9]+(/version/[0-9]+)?/file$'
 GROUP BY
