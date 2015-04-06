@@ -1,5 +1,5 @@
 -- Top public projects
--- 8 minutes
+-- top_public_projects_current_audit_period.csv
 SELECT
     PN.ID,
     PN.NAME,
@@ -18,7 +18,7 @@ ORDER BY
 
 
 -- Top public projects accessed by non-Sage users
--- 9 minutes
+-- top_public_projects_non_sage_current_audit_period.csv
 SELECT
     PN.ID,
     PN.NAME,
@@ -41,7 +41,7 @@ ORDER BY
 
 
 -- Top public projects accessed by Sage users
--- 9 minutes
+-- top_public_projects_sage_current_audit_period.csv
 SELECT
     PN.ID,
     PN.NAME,
@@ -64,7 +64,7 @@ ORDER BY
 
 
 -- Top public file downloads
--- 12 minutes
+-- top_public_file_downloads_current_audit_period.csv
 SELECT
     PN.ID,
     PN.NAME,
@@ -91,7 +91,7 @@ ORDER BY
 
 
 -- Top public file downloads by non-Sage users
--- 12 minutes
+-- top_public_file_downloads_non_sage_current_audit_period.csv
 SELECT
     PN.ID,
     PN.NAME,
@@ -122,7 +122,7 @@ ORDER BY
 
 
 -- Top public file downloads by Sage users
--- 12 minutes
+-- top_public_file_downloads_sage_current_audit_period.csv
 SELECT
     PN.ID,
     PN.NAME,

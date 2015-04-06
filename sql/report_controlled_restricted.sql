@@ -1,4 +1,5 @@
 -- Public, controlled files
+-- public_files_controlled_snapshot_20150202.csv
 SELECT
     F.ID AS ID,
     F.NAME AS FILE_NAME,
@@ -18,6 +19,7 @@ AND
 
 
 -- Public, restricted files
+-- public_files_restricted_snapshot_20150202.csv
 SELECT
     F.ID AS ID,
     F.NAME AS FILE_NAME,

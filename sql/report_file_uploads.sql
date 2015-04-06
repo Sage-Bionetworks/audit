@@ -1,4 +1,5 @@
 -- Public files uploaded by non-sage users during the last audit quarter
+-- public_file_uploads_non_sage_current_audit_period.csv
 SELECT DISTINCT
     FILES.ID AS FILE_ID,
     FILES.NAME AS FILE_NAME,
@@ -19,13 +20,14 @@ FROM
     JOIN PRINCIPAL_ALIAS PA ON UG.ID = PA.PRINCIPAL_ID 
 WHERE
     PA.TYPE = 'USER_EMAIL' AND
-    FILES.CREATED_ON > '2014-08-01 00:00:00' AND
-    FILES.CREATED_ON < '2014-11-01 00:00:00'
+    FILES.CREATED_ON > '2014-11-01 00:00:00' AND
+    FILES.CREATED_ON < '2015-02-01 00:00:00'
 ORDER BY
     FILES.PROJECT_ID;
 
 
 -- Public files uploaded by sage users during the last audit quarter
+-- public_file_uploads_sage_current_audit_period.csv
 SELECT DISTINCT
     FILES.ID AS FILE_ID,
     FILES.NAME AS FILE_NAME,
@@ -46,7 +48,7 @@ FROM
     JOIN PRINCIPAL_ALIAS PA ON UG.ID = PA.PRINCIPAL_ID 
 WHERE
     PA.TYPE = 'USER_EMAIL' AND
-    FILES.CREATED_ON > '2014-08-01 00:00:00' AND
-    FILES.CREATED_ON < '2014-11-01 00:00:00'
+    FILES.CREATED_ON > '2014-11-01 00:00:00' AND
+    FILES.CREATED_ON < '2015-02-01 00:00:00'
 ORDER BY
     FILES.PROJECT_ID;

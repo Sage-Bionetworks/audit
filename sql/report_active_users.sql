@@ -1,4 +1,5 @@
 -- Active Sage users
+-- active_sage_users.csv
 SELECT
     USERS.ID AS USER_ID,
     USERS.EMAIL AS EMAIL,
@@ -16,9 +17,8 @@ GROUP BY
 ORDER BY
     DAYS DESC;
 
-
-
 -- Active non-Sage users
+-- active_non_sage_users.csv
 SELECT
     USERS.ID AS USER_ID,
     USERS.EMAIL AS EMAIL,
@@ -39,6 +39,7 @@ ORDER BY
 
 
 -- Active daemon users
+-- active_daemon_users.csv
 SELECT
     USERS.ID AS USER_ID,
     USERS.EMAIL AS EMAIL,
