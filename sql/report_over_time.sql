@@ -19,7 +19,7 @@ ORDER BY
 SELECT *
 FROM
     AUDIT_PUBLIC_NODES
-WHERE TYPE=2
+WHERE TYPE='project'
 GROUP BY ID;
 
 -- new public files over time
