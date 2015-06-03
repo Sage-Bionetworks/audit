@@ -1,6 +1,6 @@
 -- Public files uploaded by non-sage users during the last audit quarter
 -- public_file_uploads_non_sage_current_audit_period.csv
-SELECT DISTINCT
+CREATE TABLE file_upload_non_sage SELECT DISTINCT
     FILES.ID AS FILE_ID,
     FILES.NAME AS FILE_NAME,
     FILES.CREATED_ON AS FILE_CREATED_ON,
@@ -25,10 +25,12 @@ WHERE
 ORDER BY
     FILES.PROJECT_ID;
 
+select * FROM file_upload_non_sage group by FILE_ID;
+
 
 -- Public files uploaded by sage users during the last audit quarter
 -- public_file_uploads_sage_current_audit_period.csv
-SELECT DISTINCT
+CREATE TABLE file_upload_sage SELECT DISTINCT
     FILES.ID AS FILE_ID,
     FILES.NAME AS FILE_NAME,
     FILES.CREATED_ON AS FILE_CREATED_ON,
@@ -52,3 +54,5 @@ WHERE
     FILES.CREATED_ON < '2015-02-01 00:00:00'
 ORDER BY
     FILES.PROJECT_ID;
+
+select * FROM file_upload_sage group by FILE_ID;
