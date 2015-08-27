@@ -38,4 +38,21 @@ ON
     AF.ID = APN.ID
 ORDER BY
     CREATED_ON DESC;
+    
+-- new public tables over time
+-- public_tables_over_time.csv
+SELECT 
+    AT.ID AS ID, 
+    AT.NAME AS NAME, 
+    AT.CREATED_ON AS CREATED_ON,
+    AT.CREATED_BY AS CREATED_BY,
+    AT.PROJECT_ID AS PROJECT_ID
+FROM
+    AUDIT_TABLES AT
+JOIN
+    AUDIT_PUBLIC_NODES APN
+ON
+    AT.ID = APN.ID
+ORDER BY
+    CREATED_ON DESC;
 
