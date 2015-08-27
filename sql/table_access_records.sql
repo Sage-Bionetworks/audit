@@ -8,7 +8,7 @@ CREATE TABLE AUDIT_SESSION_ENTITY (
 
 -- 3,167,850 rows, 1.5 minutes
 LOAD DATA LOCAL INFILE
-    '/Users/kimyen/Documents/Sage/audit-2014-11/session-synid.csv'
+    '/Users/kimyentruong/Documents/Report/Audit/2015/08/Data/session-synid.csv'
 INTO TABLE
     AUDIT_SESSION_ENTITY
 FIELDS TERMINATED BY ','
@@ -44,7 +44,7 @@ CREATE TABLE AUDIT_ACCESS_RECORDS (
 -- Imports merged access-record files of selected columns
 -- 21,731,753 rows, 45 minutes on a medium instance
 LOAD DATA LOCAL INFILE
-    '/Users/kimyen/Documents/Sage/audit-2014-11/access-record-lean.csv' 
+    '/Users/kimyentruong/Documents/Report/Audit/2015/08/Data/access_record.csv' 
 INTO TABLE
     AUDIT_ACCESS_RECORDS
 FIELDS TERMINATED BY ','
