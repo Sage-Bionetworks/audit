@@ -1,5 +1,5 @@
 -- Public, controlled files
--- public_files_controlled_snapshot_20150202.csv
+-- public_files_controlled_snapshot_201508.csv
 SELECT
     F.ID AS ID,
     F.NAME AS FILE_NAME,
@@ -19,7 +19,7 @@ AND
 
 
 -- Public, restricted files
--- public_files_restricted_snapshot_20150202.csv
+-- public_files_restricted_snapshot_201508.csv
 SELECT
     F.ID AS ID,
     F.NAME AS FILE_NAME,
@@ -36,3 +36,42 @@ AND
     F.PROJECT_ID = PNP.ID
 AND
     F.ID = R.ID;
+    
+-- Public, controlled tables
+-- public_tables_controlled_snapshot_201508.csv
+SELECT
+    T.ID AS ID,
+    T.NAME AS FILE_NAME,
+    T.PROJECT_ID AS PROJECT_ID,
+    PNP.NAME AS PROJECT_NAME
+FROM
+    AUDIT_TABLES T,
+    AUDIT_PUBLIC_NODES PN,
+    AUDIT_PUBLIC_NODES PNP,
+    AUDIT_CONTROLLED C
+WHERE
+    T.ID = PN.ID
+AND
+    T.PROJECT_ID = PNP.ID
+AND
+    T.ID = C.ID;
+
+
+-- Public, restricted tables
+-- public_tables_restricted_snapshot_201508.csv
+SELECT
+    T.ID AS ID,
+    T.NAME AS FILE_NAME,
+    T.PROJECT_ID AS PROJECT_ID,
+    PNP.NAME AS PROJECT_NAME
+FROM
+    AUDIT_TABLES T,
+    AUDIT_PUBLIC_NODES PN,
+    AUDIT_PUBLIC_NODES PNP,
+    AUDIT_RESTRICTED R
+WHERE
+    T.ID = PN.ID
+AND
+    T.PROJECT_ID = PNP.ID
+AND
+    T.ID = R.ID;
