@@ -150,3 +150,80 @@ GROUP BY
     PN.NAME
 ORDER BY
     SESSION_COUNT DESC;
+    
+-- Top public table downloads
+-- top_public_table_downloads_current_audit_period.csv
+SELECT
+    PN.ID,
+    PN.NAME,
+    COUNT(DISTINCT AR.SESSION) AS SESSION_COUNT,
+    PN.ID IN (SELECT ID FROM AUDIT_CONTROLLED) AS CONTROLLED,
+    PN.ID IN (SELECT ID FROM AUDIT_RESTRICTED) AS RESTRICTED
+FROM
+    AUDIT_PUBLIC_NODES PN
+INNER JOIN
+    AUDIT_ACCESS_RECORDS AR
+ON
+    PN.ID = AR.ENTITY_ID AND PN.TYPE = 'table' -- table
+WHERE
+    AR.URI REGEXP '^/repo/v1/entity/syn[0-9]+/table/download/csv/async/start$'
+GROUP BY
+    PN.ID,
+    PN.NAME
+ORDER BY
+    SESSION_COUNT DESC;
+
+
+-- Top public table downloads by non-Sage users
+-- top_public_table_downloads_non_sage_current_audit_period.csv
+SELECT
+    PN.ID,
+    PN.NAME,
+    COUNT(DISTINCT AR.SESSION) AS SESSION_COUNT,
+    PN.ID IN (SELECT ID FROM AUDIT_CONTROLLED) AS CONTROLLED,
+    PN.ID IN (SELECT ID FROM AUDIT_RESTRICTED) AS RESTRICTED
+FROM
+    AUDIT_PUBLIC_NODES PN
+INNER JOIN
+    AUDIT_ACCESS_RECORDS AR
+ON
+    PN.ID = AR.ENTITY_ID AND PN.TYPE = 'table' -- table
+INNER JOIN
+    AUDIT_NON_SAGE_USERS NSU
+ON
+    AR.USER_ID = NSU.ID
+WHERE
+    AR.URI REGEXP '^/repo/v1/entity/syn[0-9]+/table/download/csv/async/start$'
+GROUP BY
+    PN.ID,
+    PN.NAME
+ORDER BY
+    SESSION_COUNT DESC;
+
+
+-- Top public table downloads by Sage users
+-- top_public_table_downloads_sage_current_audit_period.csv
+SELECT
+    PN.ID,
+    PN.NAME,
+    COUNT(DISTINCT AR.SESSION) AS SESSION_COUNT,
+    PN.ID IN (SELECT ID FROM AUDIT_CONTROLLED) AS CONTROLLED,
+    PN.ID IN (SELECT ID FROM AUDIT_RESTRICTED) AS RESTRICTED
+FROM
+    AUDIT_PUBLIC_NODES PN
+INNER JOIN
+    AUDIT_ACCESS_RECORDS AR
+ON
+    PN.ID = AR.ENTITY_ID AND PN.TYPE = 'table' -- table
+INNER JOIN
+    AUDIT_SAGE_USERS SU
+ON
+    AR.USER_ID = SU.ID
+WHERE
+    AR.URI REGEXP '^/repo/v1/entity/syn[0-9]+/table/download/csv/async/start$'
+GROUP BY
+    PN.ID,
+    PN.NAME
+ORDER BY
+    SESSION_COUNT DESC;
+
